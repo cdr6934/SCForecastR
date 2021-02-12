@@ -1,0 +1,33 @@
+---
+title: "Data Science for Supply Chain"
+output: html_notebook
+---
+
+### Moving Average 
+The average demand during the last n periods. 
+$$
+f_n = \frac{1}{n}\sum_{i=1}^n{d_{t-i}}
+$$
+
+Where:
+
+* $n$ is the number of periods we take the average of 
+* $d_t$ the demand we observe during period $t$ 
+* $f_t$ is the forecast we made for period $t$ 
+
+The first forecast will be done for $t=n+1$ 
+
+In scientific literature, you will find often see the output you want to predict noted $y$
+
+A prediction would be noted as $\hat{y}$
+
+When we want to point to a specific occurrence of the forcast at time $t$, we will not it $f_t$ or $d_t$ 
+
+Demand observation: we will call the demand of each period. 
+
+
+**Noise**: an unexplained variation in the data. It is often due to the randomness of the different processes at hand. 
+
+
+## References 
+* [Moving Average: ](http://uc-r.github.io/ts_moving_averages)
