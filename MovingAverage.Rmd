@@ -1,6 +1,8 @@
 ---
 title: "Data Science for Supply Chain"
-output: html_notebook
+output:
+  pdf_document: default
+  html_notebook: default
 ---
 
 ### Moving Average 
@@ -15,7 +17,8 @@ Where:
 * $d_t$ the demand we observe during period $t$ 
 * $f_t$ is the forecast we made for period $t$ 
 
-The first forecast will be done for $t=n+1$ 
+The first
+forecast will be done for $t=n+1$ 
 
 In scientific literature, you will find often see the output you want to predict noted $y$
 
@@ -31,3 +34,43 @@ Demand observation: we will call the demand of each period.
 
 ## References 
 * [Moving Average: ](http://uc-r.github.io/ts_moving_averages)
+
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(fpp2)
+library(zoo)
+
+dmd <- tibble::tribble(
+              ~Date, ~Demand,
+         "2010-1-1",      37,
+         "2011-1-1",      60,
+         "2012-1-1",      85,
+         "2013-1-1",     112,
+         "2014-1-1",     132,
+         "2015-1-1",     145,
+         "2016-1-1",     179,
+         "2017-1-1",     198,
+         "2018-1-1",     212,
+         "2019-1-1",     232,
+         "2020-1-1",      NA,
+         "2021-1-1",      NA,
+         "2022-1-1",      NA
+         )
+
+
+
+dmd$Date <- as.Date(dmd$Date)
+
+demand <- dmd %>% mutate(srate_ma_1 = rollmean(Demand, k = 4, fill = NA, align = "right"),
+                         srate_ma_2 = rollmean(Demand, k = 5, fill = NA, align = "right"), 
+                          srate_ma_3 = rollmean(Demand, k = 6, fill = NA, align = "right")) 
+
+demand
+
+demand %>% gather(metric, value, Demand:srate_ma_3) %>% 
+  ggplot(aes(Date, value, color = metric)) + 
+  geom_line()
+```
+
