@@ -35,12 +35,14 @@ Demand observation: we will call the demand of each period.
 ## References 
 * [Moving Average: ](http://uc-r.github.io/ts_moving_averages)
 
-
-```{r}
+```{r include=FALSE}
 library(tidyverse)
 library(lubridate)
 library(fpp2)
 library(zoo)
+```
+
+```{r}
 
 dmd <- tibble::tribble(
               ~Date, ~Demand,
