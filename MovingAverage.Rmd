@@ -1,9 +1,12 @@
 ---
 title: "Data Science for Supply Chain"
 output:
-  pdf_document: default
+  word_document: default
   html_notebook: default
+  pdf_document: default
 ---
+
+The following PDF is an accumulated knowledge corpus of all that I have learned working in the Supply Chain specifically in retail. I will address various resources to give you the ability to further your knowledge without having to do the work yourself. Much of what is important in Supply Chain will be forecasts, and understanding risk involved in everything in the supply chain. 
 
 ### Moving Average 
 The average demand during the last n periods. 
@@ -75,4 +78,8 @@ demand %>% gather(metric, value, Demand:srate_ma_3) %>%
   ggplot(aes(Date, value, color = metric)) + 
   geom_line()
 ```
+
+This is by far the simplest way to generate a trending forecast based on the information. This really hends up giving common trend but does not take seasonality into consideration and will thus understate/overstate when there are significant changes over a period of time. 
+
+One example of this is seasonal sales. Generally after Black Friday (Holiday in the United States similar to singles day in Asia), sales will dramatically increase due to the Christmas season.
 
